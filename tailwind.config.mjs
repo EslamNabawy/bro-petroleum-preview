@@ -2,6 +2,7 @@
 export default {
   content: [
     './src/layouts/HomeLayout.astro',
+    './src/layouts/PreviewLayout.astro',
     './src/components/home/**/*.astro',
     './src/pages/en/index.astro',
   ],

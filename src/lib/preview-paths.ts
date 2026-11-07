@@ -13,6 +13,7 @@ export const previewPaths = [
   'projects/project-01',
   'projects/project-02',
   'projects/project-03',
+  'people',
   'hseq',
   'careers',
   'contact',

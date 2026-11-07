@@ -71,24 +71,24 @@ const regions = [
 
 const projects = [
   {
-    image: 'assets/backgrounds/new/project-desert-rig.png',
-    alt: 'Onshore drilling rig in the Western Desert',
+    image: 'assets/backgrounds/Sunset Oilfield Rig and Workers.png',
+    alt: 'Drilling rig at sunset in the Western Desert',
     client: 'Independent operator · Western Desert',
     title: 'Eleven-well land drilling campaign',
     figure: '98.6%',
     caption: 'Average rig availability across the campaign',
   },
   {
-    image: 'assets/backgrounds/new/project-offshore-platform.png',
-    alt: 'Offshore marine production platform in the Gulf of Suez',
+    image: 'assets/backgrounds/Sunset Pipelines Across the Desert.png',
+    alt: 'Pipeline manifold crossing the desert at sunset',
     client: 'National operating company · Gulf of Suez',
     title: 'Workover programme across 22 wells',
     figure: '18%',
     caption: 'Reduction in average days per workover',
   },
   {
-    image: 'assets/backgrounds/new/project-ndt-inspection.png',
-    alt: 'Non-destructive testing technician checking steel pipes',
+    image: 'assets/backgrounds/Engineers Reviewing Tablet at Sunset.png',
+    alt: 'Engineers reviewing inspection records on a tablet',
     client: 'International operator · Upper Egypt',
     title: 'Inspection and equipment support at three field sites',
     figure: '100%',
@@ -134,8 +134,8 @@ const actionCards = [
 
 const heroImage = asset('assets/backgrounds/Sunset Oilfield Rig and Workers.png');
 const blueprintImage = asset('assets/backgrounds/Industrial Blueprint with Steel Piping.png');
-const safetyImage = asset('assets/backgrounds/Refinery Safety Inspection at Dusk.png');
-const ctaImage = asset('assets/backgrounds/Sunset Pipelines Across the Desert.png');
+const safetyImage = asset('assets/backgrounds/Moody Industrial Valve and Piping.png');
+const ctaImage = asset('assets/backgrounds/Refinery Lights at Blue Hour.png');
 
 const circleButton = 'w-10 h-10 rounded-full bg-primary-container text-[#0E2B3B] flex items-center justify-center shrink-0 group-hover:rotate-45 transition-transform duration-300';
 ---
@@ -143,7 +143,7 @@ const circleButton = 'w-10 h-10 rounded-full bg-primary-container text-[#0E2B3B]
 <HomeLayout>
   <!-- 1. HERO -->
   <section class="relative w-full min-h-[720px] h-auto lg:h-[85vh] lg:min-h-[640px] flex items-center overflow-hidden">
-    <img src={heroImage} alt="Sunset oilfield rig and workers" class="absolute inset-0 w-full h-full object-cover object-center" style="filter: blur(1.2px);" />
+    <img src={heroImage} alt="Sunset oilfield rig and workers" class="absolute inset-0 w-full h-full object-cover object-center" />
     <div class="absolute inset-0 bg-[#0E2B3B]/65 backdrop-blur-[0.5px]"></div>
     <div class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#EFAB3E_1px,transparent_1px)] [background-size:24px_24px]"></div>
 
@@ -255,8 +255,8 @@ const circleButton = 'w-10 h-10 rounded-full bg-primary-container text-[#0E2B3B]
 
   <!-- 4. SAFETY -->
   <section class="relative w-full py-24 lg:py-28 overflow-hidden">
-    <img src={safetyImage} alt="Safety inspection at an industrial facility at dusk" class="absolute inset-0 w-full h-full object-cover object-center" style="filter: blur(1.2px);" />
-    <div class="absolute inset-0 bg-[#0E2B3B]/90"></div>
+    <img src={safetyImage} alt="Safety inspection at an industrial facility at dusk" class="absolute inset-0 w-full h-full object-cover object-center" />
+    <div class="absolute inset-0 bg-[#0E2B3B]/[0.94]"></div>
     <div class="relative z-10 max-w-[1200px] mx-auto px-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         <div class="lg:col-span-6">
@@ -478,7 +478,7 @@ const circleButton = 'w-10 h-10 rounded-full bg-primary-container text-[#0E2B3B]
 
   <!-- 9. FINAL CTA -->
   <section class="relative w-full py-24 lg:py-28 overflow-hidden" id="contact">
-    <img src={ctaImage} alt="Desert pipeline manifold at dusk" class="absolute inset-0 w-full h-full object-cover object-center" style="filter: blur(1.2px);" />
+    <img src={ctaImage} alt="Desert pipeline manifold at dusk" class="absolute inset-0 w-full h-full object-cover object-center" />
     <div class="absolute inset-0 bg-[#0E2B3B]/[0.92]"></div>
     <div class="relative z-10 max-w-[1200px] mx-auto px-6">
       <div class="max-w-2xl">

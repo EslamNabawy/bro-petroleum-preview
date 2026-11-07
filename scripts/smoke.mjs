@@ -14,6 +14,7 @@ const routes = [
   '/en/services/inspection-ndt/', '/ar/services/inspection-ndt/',
   '/en/services/maintenance-turnaround/', '/ar/services/maintenance-turnaround/',
   '/en/services/logistics-fuel-supply/', '/ar/services/logistics-fuel-supply/',
+  '/en/people/', '/ar/people/',
   '/en/projects/', '/ar/projects/',
   '/en/hseq/', '/ar/hseq/',
   '/en/careers/', '/ar/careers/',
