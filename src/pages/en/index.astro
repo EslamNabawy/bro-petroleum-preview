@@ -113,25 +113,6 @@ const quotes = [
   },
 ];
 
-const actionCards = [
-  {
-    image: 'assets/backgrounds/new/action-hseq-audit.png',
-    alt: 'Safety auditor inspecting valves and pressure gauges',
-    eyebrow: 'HSEQ',
-    body: 'Health and safety forms the cornerstone of how we work and ensures nobody gets hurt on our worksites.',
-    cta: 'Learn more',
-    href: href('en/hseq'),
-  },
-  {
-    image: 'assets/backgrounds/new/action-field-engineers.png',
-    alt: 'Two field engineers reviewing a technical blueprint',
-    eyebrow: 'CAREERS AT BRO',
-    body: 'Join a team where field experience is valued, training is structured and careers are built to last.',
-    cta: 'Find out more',
-    href: href('en/careers'),
-  },
-];
-
 const heroImage = asset('assets/backgrounds/Sunset Oilfield Rig and Workers.png');
 const blueprintImage = asset('assets/backgrounds/Industrial Blueprint with Steel Piping.png');
 const safetyImage = asset('assets/backgrounds/Moody Industrial Valve and Piping.png');
@@ -450,33 +431,7 @@ const circleButton = 'w-10 h-10 rounded-full bg-primary-container text-[#0E2B3B]
     </div>
   </section>
 
-  <!-- 8. TWO ACTION CARDS -->
-  <section class="w-full bg-pure-white py-12 lg:py-16">
-    <div class="max-w-[1200px] mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {actionCards.map((card) => (
-          <div class="group bg-pale-tint border border-border-hairline rounded-[2px] flex flex-col sm:flex-row overflow-hidden hover:shadow-md transition-shadow">
-            <div class="sm:w-2/5 min-h-[220px] relative">
-              <img src={asset(card.image)} alt={card.alt} class="w-full h-full object-cover object-center" loading="lazy" />
-            </div>
-            <div class="hidden sm:block w-px bg-border-hairline"></div>
-            <div class="sm:w-3/5 p-6 sm:p-8 flex flex-col justify-between">
-              <div>
-                <div class="font-eyebrow text-eyebrow uppercase tracking-widest text-[#8A5A00] font-bold mb-2">{card.eyebrow}</div>
-                <p class="font-body text-[15px] text-[#1B2B35] leading-relaxed mb-6">{card.body}</p>
-              </div>
-              <a class="inline-flex items-center gap-3" href={card.href}>
-                <span class={circleButton}><span class="material-symbols-outlined text-[18px]">add</span></span>
-                <span class="text-[14px] font-semibold text-[#163D52] group-hover:text-[#8A5A00] transition-colors">{card.cta}</span>
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- 9. FINAL CTA -->
+  <!-- 8. FINAL CTA -->
   <section class="relative w-full py-24 lg:py-28 overflow-hidden" id="contact">
     <img src={ctaImage} alt="Desert pipeline manifold at dusk" class="absolute inset-0 w-full h-full object-cover object-center" />
     <div class="absolute inset-0 bg-[#0E2B3B]/[0.92]"></div>
