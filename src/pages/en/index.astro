@@ -200,33 +200,33 @@ const circleButton = 'w-10 h-10 rounded-full bg-primary-container text-[#0E2B3B]
   </section>
 
   <!-- 3. SERVICES -->
-  <section class="relative w-full bg-pale-tint py-24 lg:py-28 overflow-hidden" id="services">
+  <section class="relative w-full bg-[#F4F7F8] py-16 lg:py-20 overflow-hidden" id="services">
     <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
-      <img src={blueprintImage} alt="Industrial blueprint with steel piping" class="w-full h-full object-cover object-center" />
-      <div class="absolute inset-0 bg-[#0E2B3B]/90 backdrop-blur-[0.5px]"></div>
+      <img src={blueprintImage} alt="" aria-hidden="true" class="w-full h-full object-cover object-center opacity-[0.12]" />
+      <div class="absolute inset-0 bg-[#F4F7F8]/[0.92]"></div>
     </div>
     <div class="relative z-10 max-w-[1200px] mx-auto px-6">
-      <div class="max-w-2xl mb-14">
-        <div class="font-eyebrow text-eyebrow uppercase tracking-widest text-primary-container font-bold mb-3">SERVICES</div>
-        <h2 class="font-headline-lg text-headline-lg text-pure-white mb-4">From operating requirement to a clear delivery plan.</h2>
-        <p class="font-lead text-lead text-pure-white/85">Six service lines, each scoped around your brief, your equipment and your schedule.</p>
+      <div class="max-w-2xl mb-10 lg:mb-12">
+        <div class="font-eyebrow text-eyebrow uppercase tracking-widest text-[#8A5A00] font-bold mb-3">SERVICES</div>
+        <h2 class="font-headline-lg text-headline-lg text-[#163D52] mb-4">From operating requirement to a clear delivery plan.</h2>
+        <p class="font-lead text-lead text-[#566873]">Six service lines, each scoped around your brief, your equipment and your schedule.</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
         {services.map((service) => (
-          <div class="group bg-pure-white border border-border-hairline p-8 rounded-[2px] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+          <div class="group bg-pure-white border border-border-hairline p-5 lg:p-6 rounded-[2px] flex flex-col justify-between transition-shadow duration-300 hover:shadow-md">
             <div>
-              <div class="flex items-center justify-between mb-6">
-                <span class="font-mono text-sm tracking-wider text-muted-text font-semibold">{service.number}</span>
-                <div class="w-10 h-10 text-[#163D52]">
+              <div class="flex items-center justify-between mb-4">
+                <span class="font-mono text-[11px] tracking-wider text-muted-text font-semibold">{service.number}</span>
+                <div class="w-8 h-8 text-[#163D52]">
                   <svg class="w-full h-full" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 32 32"><Fragment set:html={service.icon} /></svg>
                 </div>
               </div>
-              <h3 class="font-headline-md text-[22px] font-semibold text-[#163D52] mb-3">{service.title}</h3>
-              <p class="font-body text-[15px] text-muted-text leading-relaxed mb-8">{service.body}</p>
+              <h3 class="font-headline-md text-[18px] font-semibold text-[#163D52] mb-2">{service.title}</h3>
+              <p class="font-body text-[12px] text-muted-text leading-relaxed mb-5">{service.body}</p>
             </div>
-            <a class="flex items-center gap-3 pt-4 border-t border-border-hairline" href={href(`en/services/${service.slug}`)}>
-              <span class={circleButton}><span class="material-symbols-outlined text-[18px]">add</span></span>
-              <span class="text-[14px] font-semibold text-[#163D52] group-hover:text-[#8A5A00] transition-colors">Learn more</span>
+            <a class="flex items-center gap-2 pt-3 border-t border-border-hairline" href={href(`en/services/${service.slug}`)}>
+              <span class="w-7 h-7 rounded-full bg-primary-container text-[#0E2B3B] flex items-center justify-center shrink-0 group-hover:rotate-45 transition-transform duration-300"><span class="material-symbols-outlined text-[15px]">add</span></span>
+              <span class="text-[11px] font-semibold text-[#163D52] group-hover:text-[#8A5A00] transition-colors">Learn more</span>
             </a>
           </div>
         ))}
