@@ -1,0 +1,8 @@
+---
+import type { Locale } from '../lib/localized';
+import { localePath } from '../lib/localized';
+const { locale } = Astro.props as { locale: Locale };
+const target = locale === 'en' ? 'ar' : 'en';
+const currentPath = Astro.url.pathname.replace(/^\/(en|ar)/, '').replace(/^\//, '');
+---
+<a class="language-switcher" href={localePath(target, currentPath)} lang={target}>{target === 'ar' ? 'العربية' : 'English'}</a>

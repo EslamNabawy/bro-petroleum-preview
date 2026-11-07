@@ -1,0 +1,22 @@
+{
+  "name": "bro-petroleum-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test:smoke": "node scripts/smoke.mjs"
+  },
+  "dependencies": {
+    "@astrojs/node": "^9.5.0",
+    "astro": "^5.14.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@types/node": "^22.10.1",
+    "typescript": "^5.7.2"
+  }
+}

@@ -1,0 +1,61 @@
+---
+import '../styles/global.css';
+import LocalizedHeader from '../components/LocalizedHeader.astro';
+import LocalizedFooter from '../components/LocalizedFooter.astro';
+import { localeMeta, type Locale, localePath } from '../lib/localized';
+import { site } from '../lib/site';
+
+interface Props { locale: Locale; title: string; description: string; path?: string; }
+const { locale, title, description, path = '' } = Astro.props;
+const meta = localeMeta[locale];
+const canonical = new URL(localePath(locale, path), Astro.site ?? Astro.url.origin).toString();
+const alternate = new URL(localePath(locale === 'en' ? 'ar' : 'en', path), Astro.site ?? Astro.url.origin).toString();
+---
+<!doctype html>
+<html lang={meta.lang} dir={meta.dir} data-analytics-endpoint={import.meta.env.PUBLIC_ANALYTICS_ENDPOINT ?? ''}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang={locale} href={canonical} />
+    <link rel="alternate" hreflang={locale === 'en' ? 'ar' : 'en'} href={alternate} />
+    <link rel="alternate" hreflang="x-default" href={new URL(localePath('en', path), Astro.site ?? Astro.url.origin).toString()} />
+    <title>{title} | {site.name}</title>
+    <link rel="preload" as="image" href="/assets/backgrounds/Sunset Oilfield Rig and Workers.png" />
+    <link rel="icon" href="/assets/brand/bro-petroleum-logo-600.png" />
+  </head>
+  <body>
+    <LocalizedHeader locale={locale} path={path} />
+    <main><slot /></main>
+    <LocalizedFooter locale={locale} />
+    <script>
+      const wrapPlaceholders = () => {
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        const nodes = [];
+        while (walker.nextNode()) if (walker.currentNode.parentElement && !walker.currentNode.parentElement.closest('.placeholder') && !['SCRIPT', 'STYLE'].includes(walker.currentNode.parentElement.tagName) && /\[[^\]]+\]/.test(walker.currentNode.nodeValue ?? '')) nodes.push(walker.currentNode);
+        nodes.forEach((node) => { const fragment = document.createDocumentFragment(); (node.nodeValue ?? '').split(/(\[[^\]]+\])/g).forEach((part) => { if (/^\[[^\]]+\]$/.test(part)) { const span = document.createElement('span'); span.className = 'placeholder'; span.textContent = part; fragment.append(span); } else fragment.append(document.createTextNode(part)); }); node.parentNode?.replaceChild(fragment, node); });
+        if (new URLSearchParams(window.location.search).has('show-placeholders')) document.body.classList.add('show-placeholders');
+      };
+      wrapPlaceholders();
+      const menuButton = document.querySelector('[data-menu-button]');
+      const nav = document.querySelector('[data-nav]');
+      menuButton?.addEventListener('click', () => { const open = nav?.classList.toggle('is-open') ?? false; menuButton.setAttribute('aria-expanded', String(open)); });
+      nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => nav.classList.remove('is-open')));
+    </script>
+    <script>
+      const analyticsEndpoint = document.documentElement.dataset.analyticsEndpoint ?? '';
+      const track = (eventName: string, detail: Record<string, unknown> = {}) => {
+        if (!analyticsEndpoint) return;
+        const payload = JSON.stringify({ event: eventName, path: window.location.pathname, ...detail });
+        if (navigator.sendBeacon) navigator.sendBeacon(analyticsEndpoint, new Blob([payload], { type: 'application/json' }));
+        else void fetch(analyticsEndpoint, { method: 'POST', body: payload, headers: { 'content-type': 'application/json' }, keepalive: true });
+      };
+      document.addEventListener('click', (event) => {
+        const target = (event.target as Element | null)?.closest('[data-track]');
+        if (target) track((target as HTMLElement).dataset.track ?? 'unknown');
+      });
+      document.addEventListener('bro:form-submitted', (event) => track('lead_submission', (event as CustomEvent).detail ?? {}));
+    </script>
+  </body>
+</html>

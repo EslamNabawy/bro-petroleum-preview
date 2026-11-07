@@ -1,0 +1,7 @@
+---
+import LocaleLayout from '../../../layouts/LocaleLayout.astro'; import Breadcrumbs from '../../../components/Breadcrumbs.astro'; import ContentCards from '../../../components/ContentCards.astro'; import { locales, type Locale } from '../../../lib/localized';
+export const prerender = true;
+export function getStaticPaths() { return locales.map((locale) => ({ params: { locale }, props: { locale } })); }
+const { locale } = Astro.props as { locale: Locale }; const ar = locale === 'ar';
+---
+<LocaleLayout locale={locale} path="services" title={ar ? 'الخدمات' : 'Services'} description={ar ? '[وصف الخدمات بانتظار المراجعة]' : '[Services description pending approval]'}><section class="page-hero"><div class="container"><Breadcrumbs locale={locale} items={[{ label: ar ? 'الخدمات' : 'Services' }]} /><div class="eyebrow">{ar ? 'الخدمات' : 'Services'}</div><h1 class="page-hero-title">{ar ? 'نطاق واضح قبل بدء العمل.' : 'A clear scope before work begins.'}</h1><p>{ar ? '[وصف الخدمات المعتمدة بانتظار BRO]' : '[Approved service overview pending BRO]'}</p></div></section><section class="section"><div class="container"><ContentCards locale={locale} kind="services" /></div></section></LocaleLayout>

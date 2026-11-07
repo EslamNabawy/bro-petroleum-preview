@@ -1,0 +1,6 @@
+---
+import type { Locale } from '../lib/localized';
+import { localePath } from '../lib/localized';
+const { locale, items } = Astro.props as { locale: Locale; items: Array<{ label: string; path?: string }> };
+---
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href={localePath(locale)}>{locale === 'ar' ? 'الرئيسية' : 'Home'}</a>{items.map((item) => <><span aria-hidden="true">/</span>{item.path ? <a href={localePath(locale, item.path)}>{item.label}</a> : <span aria-current="page">{item.label}</span>}</>)}</nav>
