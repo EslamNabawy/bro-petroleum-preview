@@ -1,0 +1,103 @@
+---
+import { asset, href } from '../../lib/urls';
+
+const columns = [
+  {
+    title: 'About BRO',
+    links: [
+      { label: 'What we do', href: href('en/about') },
+      { label: 'Our leadership', href: href('en/about') },
+    ],
+  },
+  {
+    title: 'Services',
+    links: [
+      { label: 'Drilling support', href: href('en/services/drilling-support') },
+      { label: 'Well services & workover', href: href('en/services/well-services-workover') },
+      { label: 'Equipment rental', href: href('en/services/equipment-rental') },
+      { label: 'Inspection & NDT', href: href('en/services/inspection-ndt') },
+      { label: 'Maintenance & turnaround', href: href('en/services/maintenance-turnaround') },
+      { label: 'Logistics & fuel supply', href: href('en/services/logistics-fuel-supply') },
+    ],
+  },
+  {
+    title: 'Projects',
+    links: [
+      { label: 'Case studies', href: href('en/projects') },
+      { label: 'Proven track record', href: href('en/projects') },
+    ],
+  },
+  {
+    title: 'HSEQ',
+    links: [
+      { label: 'Quality', href: href('en/hseq') },
+      { label: 'Health & safety', href: href('en/hseq') },
+      { label: 'Environment', href: href('en/hseq') },
+      { label: 'Sustainability', href: href('en/hseq') },
+    ],
+  },
+  {
+    title: 'Our People',
+    links: [
+      { label: 'Life at BRO', href: href('en/careers') },
+      { label: 'Careers at BRO', href: href('en/careers') },
+    ],
+  },
+];
+
+const socials = [
+  { label: 'LinkedIn', icon: 'share' },
+  { label: 'X', icon: 'public' },
+  { label: 'Facebook', icon: 'group' },
+  { label: 'Instagram', icon: 'photo_camera' },
+  { label: 'YouTube', icon: 'smart_display' },
+];
+---
+
+<footer class="w-full bg-[#0E2B3B] text-pure-white border-t border-[#163D52] pt-20 pb-10">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="mb-10">
+      <div class="bg-pure-white p-4 rounded-sm inline-block">
+        <img src={asset('assets/brand/bro-petroleum-logo-600.png')} alt="BRO Petroleum Services" class="h-10 w-auto object-contain" width="600" height="600" />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 pb-12">
+      {columns.map((column) => (
+        <div class="space-y-4">
+          <h4 class="text-primary-container font-eyebrow text-eyebrow uppercase tracking-[0.1em]">{column.title}</h4>
+          <ul class="space-y-2 text-sm text-[#afcadf]">
+            {column.links.map((link) => <li><a class="hover:text-pure-white transition-colors" href={link.href}>{link.label}</a></li>)}
+          </ul>
+        </div>
+      ))}
+      <div class="space-y-4">
+        <h4 class="text-primary-container font-eyebrow text-eyebrow uppercase tracking-[0.1em]">Contact Us</h4>
+        <div class="space-y-2 text-sm text-[#afcadf]">
+          <p class="leading-relaxed">12 Business Park Road, Fifth Settlement, New Cairo, Egypt</p>
+          <p><a class="hover:text-pure-white" href="tel:+20225000140">+20 2 2500 0140</a></p>
+          <p><a class="hover:text-pure-white" href="mailto:info@bropetroleum.com">info@bropetroleum.com</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-[#163D52] py-6 mt-12 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="text-sm text-[#8BA1AF] text-center md:text-left">
+        <span>© 2026 BRO Petroleum Services. All rights reserved.</span>
+        <span class="hidden sm:inline mx-1">·</span>
+        <a class="hover:text-pure-white transition-colors" href={href('en/privacy')}>Privacy Policy</a>
+        <span class="mx-1">·</span>
+        <a class="hover:text-pure-white transition-colors" href={href('en/terms')}>Legal Disclaimer</a>
+        <span class="mx-1">·</span>
+        <a class="hover:text-pure-white transition-colors" href={href('en/terms')}>Terms and Conditions</a>
+      </div>
+      <div class="flex items-center gap-3">
+        {socials.map((social) => (
+          <a aria-label={social.label} class="w-8 h-8 rounded-full border border-[#163D52] flex items-center justify-center text-[#afcadf] hover:text-pure-white hover:border-primary-container transition-colors" href="#">
+            <span class="material-symbols-outlined text-[16px]">{social.icon}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</footer>

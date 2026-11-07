@@ -1,0 +1,45 @@
+---
+import { asset, base, href } from '../../lib/urls';
+
+const links = [
+  { label: 'About BRO', path: 'en/about' },
+  { label: 'Services', path: 'en/services' },
+  { label: 'Projects', path: 'en/projects' },
+  { label: 'HSEQ', path: 'en/hseq' },
+  { label: 'Our People', path: 'en#people' },
+  { label: 'Contact Us', path: 'en/contact' },
+];
+
+const navLink = 'h-full flex items-center text-[15px] font-medium text-secondary hover:text-on-background border-t-[3px] border-transparent transition-colors';
+const mobileLink = 'py-3 border-b border-border-hairline text-[15px] font-medium text-secondary hover:text-on-background transition-colors';
+---
+
+<header class="fixed top-0 left-0 right-0 w-full z-50 bg-pure-white border-b border-border-hairline">
+  <div class="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-20 lg:h-24">
+    <a class="flex items-center gap-4" href={href('en')} aria-label="BRO Petroleum Services home">
+      <img src={asset('assets/brand/bro-petroleum-logo-600.png')} alt="BRO Petroleum Services" class="w-auto object-contain h-14 lg:h-20" width="600" height="600" />
+      <span class="font-eyebrow text-eyebrow uppercase tracking-widest text-on-surface font-semibold hidden sm:inline-block">Petroleum Services</span>
+    </a>
+
+    <nav class="hidden xl:flex items-center h-full gap-8" aria-label="Primary navigation">
+      {links.map((link) => <a class={navLink} href={href(link.path)}>{link.label}</a>)}
+    </nav>
+
+    <div class="flex items-center gap-3 sm:gap-4">
+      <div class="hidden md:block h-6 w-px bg-border-hairline"></div>
+      <a class="inline-flex items-center text-[14px] font-medium text-secondary hover:text-on-background transition-colors" href={href('ar')} aria-label="Switch to the Arabic preview placeholder">EN | العربية</a>
+      <a class="hidden sm:inline-flex items-center justify-center bg-primary-container text-on-secondary-fixed hover:bg-dark-amber hover:text-on-primary font-semibold text-[14px] px-5 py-2.5 rounded-[2px] transition-colors" href={href('en/contact')}>Request a quote</a>
+      <button type="button" class="xl:hidden inline-flex h-10 w-10 items-center justify-center border border-border-hairline rounded-[2px] text-[#163D52] hover:border-dark-amber transition-colors" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <span class="material-symbols-outlined text-[22px]" data-menu-icon>menu</span>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-nav" data-mobile-nav class="hidden xl:hidden border-t border-border-hairline bg-pure-white">
+    <nav class="max-w-[1200px] mx-auto px-6 py-2 flex flex-col" aria-label="Mobile navigation">
+      {links.map((link) => <a class={mobileLink} href={href(link.path)}>{link.label}</a>)}
+      <a class="py-3 text-[15px] font-semibold text-[#8A5A00]" href={href('ar')}>العربية (preview)</a>
+    </nav>
+  </div>
+</header>
+<span class="sr-only" data-base-path>{base}</span>

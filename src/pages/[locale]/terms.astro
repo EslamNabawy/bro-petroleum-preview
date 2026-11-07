@@ -1,7 +1,0 @@
----
-import LocaleLayout from '../../layouts/LocaleLayout.astro'; import { locales, type Locale } from '../../lib/localized';
-export const prerender = true;
-export function getStaticPaths() { return locales.map((locale) => ({ params: { locale }, props: { locale } })); }
-const { locale } = Astro.props as { locale: Locale }; const ar = locale === 'ar';
----
-<LocaleLayout locale={locale} path="terms" title={ar ? 'الشروط' : 'Terms'} description={ar ? '[نص الشروط بانتظار مراجعة المستشار القانوني]' : '[Terms wording pending counsel review]'}><section class="page-hero"><div class="container"><div class="eyebrow">{ar ? 'الشروط' : 'Terms'}</div><h1 class="page-hero-title">{ar ? 'شروط استخدام الموقع.' : 'Website terms of use.'}</h1><p>[Terms wording pending counsel review]</p></div></section><section class="section"><div class="container text-container"><div class="notice">[Final terms pending legal review. Do not publish as final legal advice.]</div></div></section></LocaleLayout>

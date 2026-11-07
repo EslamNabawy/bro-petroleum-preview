@@ -1,0 +1,40 @@
+---
+import '../styles/home.css';
+import HomeHeader from '../components/home/HomeHeader.astro';
+import HomeFooter from '../components/home/HomeFooter.astro';
+import { asset } from '../lib/urls';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BRO Petroleum preview</title>
+    <meta name="description" content="Preview build of the BRO Petroleum Services corporate website: land drilling, well services, equipment, inspection and logistics across Egypt and MENA." />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#0E2B3B" />
+    <link rel="icon" type="image/png" href={asset('assets/brand/bro-petroleum-logo-600.png')} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" />
+  </head>
+  <body class="bg-surface font-body text-on-surface antialiased">
+    <HomeHeader />
+    <main class="w-full bg-surface min-h-[calc(100vh-80px)] pt-20 lg:pt-24">
+      <slot />
+    </main>
+    <HomeFooter />
+    <script>
+      const menuToggle = document.querySelector('[data-menu-toggle]');
+      const menuPanel = document.querySelector('[data-mobile-nav]');
+      const menuIcon = document.querySelector('[data-menu-icon]');
+      menuToggle?.addEventListener('click', () => {
+        const open = menuPanel?.classList.toggle('hidden') === false;
+        menuToggle.setAttribute('aria-expanded', String(open));
+        if (menuIcon) menuIcon.textContent = open ? 'close' : 'menu';
+      });
+    </script>
+  </body>
+</html>

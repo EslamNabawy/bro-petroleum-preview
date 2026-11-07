@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Source design hides scrollbars for a clean editorial canvas. */
+html {
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Preview notice shown when a form or quote action is triggered. */
+.preview-toast[hidden] {
+  display: none;
+}

@@ -1,40 +1,45 @@
-# BRO Petroleum Services website
+# BRO Petroleum — preview
 
-Production-oriented bilingual Astro site for BRO Petroleum Services. The public launch structure is `/en/` and `/ar/`; the root route redirects to English.
+Single-page preview build of the BRO Petroleum Services website.
 
-## Local development
+- The homepage (`/en/`) is the new design from the Stitch mock-up.
+- Every other route, including `/ar/`, renders a white "this is a preview version" placeholder.
+- Forms and quote/careers links are placeholders that point at the preview page.
 
-```powershell
+## Stack
+
+- Astro 5, static output (`output: 'static'`), deployed to GitHub Pages.
+- Tailwind CSS v3, compiled locally and scoped to the homepage only (`src/styles/home.css`).
+- No client-side framework, no runtime API.
+
+## Commands
+
+```sh
 npm install
-Copy-Item .env.example .env
-npm run dev
+npm run dev      # local dev server
+npm run check    # astro check
+npm run build    # type-check + static build to dist/
+npm run preview  # serve dist/ locally
+npm run test:smoke   # hit every route with SMOKE_BASE_URL pointing at a running server
 ```
 
-The public site intentionally does not invent BRO contact details, certifications, client names, project outcomes, or operating claims. Unapproved facts remain bracketed placeholders or disabled document cards until BRO supplies written approval.
+## Deploy
 
-Forms use a transactional email provider adapter. Copy `.env.example` to `.env` and set the provider, recipient, site URL, and Turnstile values before enabling production submissions. Without provider configuration, the endpoints return an explicit configuration error instead of a false success.
+Pushing to `main` runs `.github/workflows/deploy.yml` and publishes `dist/` to GitHub Pages:
+<https://eslamnabawy.github.io/bro-petroleum-preview/>
+
+The site is set to `noindex` while it is a preview.
 
 ## Structure
 
-- `src/pages/` — public routes and server endpoints
-- `src/components/` — reusable UI components
-- `src/lib/` — typed localized content, evidence data, and site configuration
-- `src/styles/` — design system and responsive styles
-- `public/assets/` — local website assets
-- `scripts/smoke.mjs` — route and API smoke test
-
-## Verification states
-
-The transparent BRO logo source is preserved in `public/assets/brand/original/`; production variants are in `public/assets/brand/`. Background images remain local under `public/assets/backgrounds/`.
-
-`src/lib/localized.ts` is the public content model. `src/lib/fleet.ts` remains evidence-only and must not be promoted to public claims without BRO confirmation.
-
-## Production checks
-
-```powershell
-npm run check
-npm run build
-npm run test:smoke
 ```
-
-Run `npm run dev -- --host 127.0.0.1` before `npm run test:smoke`, or set `SMOKE_BASE_URL` to a running deployment. `npm audit` currently reports dependency advisories that should be reviewed before launch; do not apply a force upgrade without compatibility testing.
+src/pages/en/index.astro        homepage (new design)
+src/pages/en/[...slug].astro    placeholder pages for every other English route
+src/pages/ar/                   Arabic placeholders
+src/pages/404.astro             not-found page
+src/components/home/            header + footer used by the homepage
+src/layouts/HomeLayout.astro    homepage document shell
+src/layouts/PreviewLayout.astro placeholder page shell
+src/lib/urls.ts                 base-path aware link helpers
+public/assets/                  logo + background imagery
+```

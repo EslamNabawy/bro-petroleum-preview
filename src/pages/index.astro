@@ -1,3 +1,5 @@
 ---
-return Astro.redirect('/en/');
+import { href } from '../lib/urls';
+
+return Astro.redirect(href('en'));
 ---

@@ -1,7 +1,0 @@
----
-import type { Locale } from '../lib/localized';
-import { services, projects, t, localePath } from '../lib/localized';
-import Icon from './Icon.astro';
-const { locale, kind } = Astro.props as { locale: Locale; kind: 'services' | 'projects' };
----
-{kind === 'services' ? <div class="grid-3">{services.map((service, index) => <article class="service-card"><Icon name={['drill', 'well', 'equipment', 'inspect', 'maintenance', 'logistics'][index]} /><h3 class="card-title">{t(service.title, locale)}</h3><p>{t(service.outcome, locale)}</p><a class="card-link" href={localePath(locale, `services/${service.slug}`)}>{locale === 'ar' ? 'عرض الخدمة' : 'View service'} <span aria-hidden="true">→</span></a></article>)}</div> : <div class="grid-3">{projects.map((project, index) => <article class="project-card"><div class:list={['image-slot', 'project-image-slot', `project-image-${index + 1}`]} aria-hidden="true"></div><div class="project-card__body"><div class="eyebrow">{t(project.clientType, locale)}</div><h3 class="card-title placeholder">{project.previewTitle ? t(project.previewTitle, locale) : t(project.title, locale)}</h3><p class="project-result placeholder">{project.previewResult ? t(project.previewResult, locale) : t(project.result, locale)}</p><a class="card-link" href={localePath(locale, `projects/${project.slug}`)}>{locale === 'ar' ? 'عرض المشروع' : 'View project'} <span aria-hidden="true">→</span></a></div></article>)}</div>}

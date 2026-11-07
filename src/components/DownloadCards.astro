@@ -1,6 +1,0 @@
----
-import type { Locale } from '../lib/localized';
-import { downloads, t } from '../lib/localized';
-const { locale } = Astro.props as { locale: Locale };
----
-<div class="grid-3">{downloads.map((item) => <article class="download-card"><div class="eyebrow">{t(item.type, locale)}</div><h3>{t(item.title, locale)}</h3><p>{t(item.status, locale)}</p><button class="button button--outline" data-track="download_click" type="button" disabled>{locale === 'ar' ? 'التنزيل غير متاح' : 'Download unavailable'}</button></article>)}</div>

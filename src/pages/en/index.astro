@@ -1,0 +1,507 @@
+---
+import HomeLayout from '../../layouts/HomeLayout.astro';
+import { asset, href } from '../../lib/urls';
+
+const services = [
+  {
+    number: '01',
+    title: 'Drilling support',
+    body: 'Experienced crews and supervision that keep the drilling programme on schedule and within plan.',
+    slug: 'drilling-support',
+    icon: `<path d="M16 3L6 28h20L16 3z"></path><path d="M11 16h10M9 22h14M16 3v25M13 10h6"></path>`,
+  },
+  {
+    number: '02',
+    title: 'Well services and workover',
+    body: 'Intervention, completion and workover services planned around the right people, equipment and controls.',
+    slug: 'well-services-workover',
+    icon: `<path d="M16 4v24M8 12h16M6 20h20M12 4h8M10 28h12"></path><circle cx="16" cy="12" r="2"></circle><circle cx="16" cy="20" r="2"></circle>`,
+  },
+  {
+    number: '03',
+    title: 'Equipment rental',
+    body: 'Inspected field equipment supplied with documented handover and responsive support.',
+    slug: 'equipment-rental',
+    icon: `<rect height="18" rx="1" width="24" x="4" y="8"></rect><path d="M10 8V5a1 1 0 011-1h10a1 1 0 011 1v3M16 14v6M13 17h6"></path>`,
+  },
+  {
+    number: '04',
+    title: 'Inspection and NDT',
+    body: 'Certified inspection and non-destructive testing that turns requirements into traceable records.',
+    slug: 'inspection-ndt',
+    icon: `<circle cx="16" cy="16" r="11"></circle><path d="M16 10v6l4 2"></path><path d="M6 16h3M23 16h3M16 6v3"></path>`,
+  },
+  {
+    number: '05',
+    title: 'Maintenance and turnaround',
+    body: 'Planned maintenance and shutdown support coordinated around your production window.',
+    slug: 'maintenance-turnaround',
+    icon: `<path d="M14 6h4l1 3 3 1 3-2 3 3-2 3 1 3 3 1v4l-3 1-1 3 2 3-3 3-3-2-3 1-1 3h-4l-1-3-3-1-3 2-3-3 2-3-1-3-3-1v-4l3-1 1-3-2-3 3-3 3 2 3-1 1-3z"></path><circle cx="16" cy="16" r="4"></circle>`,
+  },
+  {
+    number: '06',
+    title: 'Logistics and fuel supply',
+    body: 'Reliable movement of people, materials and fuel to remote locations, on schedule.',
+    slug: 'logistics-fuel-supply',
+    icon: `<path d="M3 8h17v14H3zM20 14h5l4 4v4h-9v-8z"></path><circle cx="9" cy="22" r="3"></circle><circle cx="24" cy="22" r="3"></circle>`,
+  },
+];
+
+const certifications = [
+  { icon: 'verified', label: 'ISO standard', code: 'ISO 9001:2015', name: 'Quality Management', body: 'Disciplined service execution, process consistency, and measurable field performance benchmarks across all project phases.', footer: 'Active Certification', highlight: false },
+  { icon: 'energy_savings_leaf', label: 'ISO standard', code: 'ISO 14001:2015', name: 'Environmental Management', body: 'Strict mitigation of environmental impact, responsible drill waste handling, and comprehensive regional ecosystem safeguards.', footer: 'Active Certification', highlight: false },
+  { icon: 'health_and_safety', label: 'ISO standard', code: 'ISO 45001:2018', name: 'Occupational Health & Safety', body: 'Proactive risk assessment, workplace accident prevention, and stringent wellsite emergency readiness protocols.', footer: 'Active Certification', highlight: false },
+  { icon: 'shield', label: 'API Framework', code: 'API Spec Q2', name: 'Quality for Service Supply', body: 'The premier global standard specifically engineered for service supply organizations in the petroleum and natural gas industries.', footer: 'Audited Compliance', highlight: true },
+];
+
+const stats = [
+  { eyebrow: 'METRIC · 01', value: '17', unit: 'Yrs', unitClass: 'text-[14px] lg:text-[16px] font-semibold text-primary-container uppercase tracking-wider font-mono', label: 'Years in operation', detail: 'Across Egypt & MENA' },
+  { eyebrow: 'METRIC · 02', value: '450', unit: '+', unitClass: 'text-2xl lg:text-3xl font-semibold text-primary-container leading-none', label: 'People', detail: 'Engineers & specialists' },
+  { eyebrow: 'METRIC · 03', value: '14', unit: 'Units', unitClass: 'text-[14px] lg:text-[16px] font-semibold text-primary-container uppercase tracking-wider font-mono', label: 'Rigs and units', detail: 'Land drilling & workover' },
+  { eyebrow: 'METRIC · 04', value: '2.4', unit: 'M', unitClass: 'text-2xl lg:text-3xl font-semibold text-primary-container leading-none', label: 'Safe man-hours', detail: 'Zero LTI recorded' },
+];
+
+const regions = [
+  { name: 'Western Desert', scope: 'Drilling & Workover' },
+  { name: 'Gulf of Suez', scope: 'Offshore Support & NDT' },
+  { name: 'Sinai Peninsula', scope: 'Intervention & Heavy Fleet' },
+  { name: 'Nile Delta', scope: 'Gas Well Services' },
+  { name: 'Upper Egypt', scope: 'Appraisal & Logistics Base' },
+];
+
+const projects = [
+  {
+    image: 'assets/backgrounds/new/project-desert-rig.png',
+    alt: 'Onshore drilling rig in the Western Desert',
+    client: 'Independent operator · Western Desert',
+    title: 'Eleven-well land drilling campaign',
+    figure: '98.6%',
+    caption: 'Average rig availability across the campaign',
+  },
+  {
+    image: 'assets/backgrounds/new/project-offshore-platform.png',
+    alt: 'Offshore marine production platform in the Gulf of Suez',
+    client: 'National operating company · Gulf of Suez',
+    title: 'Workover programme across 22 wells',
+    figure: '18%',
+    caption: 'Reduction in average days per workover',
+  },
+  {
+    image: 'assets/backgrounds/new/project-ndt-inspection.png',
+    alt: 'Non-destructive testing technician checking steel pipes',
+    client: 'International operator · Upper Egypt',
+    title: 'Inspection and equipment support at three field sites',
+    figure: '100%',
+    caption: 'Inspection records delivered on schedule',
+  },
+];
+
+const quotes = [
+  {
+    image: 'assets/backgrounds/new/people-rig-manager.png',
+    alt: 'Rig manager in a white hardhat on an industrial drill site',
+    quote: '“Every shift starts with a plan we all believe in. That is what keeps us safe and on schedule.”',
+    name: 'Karim Mansour',
+    role: 'Rig Manager, Western Desert',
+  },
+  {
+    image: 'assets/backgrounds/new/people-drilling-supervisor.png',
+    alt: 'Drilling supervisor in a yellow hardhat holding a tablet at a wellhead site',
+    quote: '“BRO invested in my training from my first month. Today I supervise my own crew.”',
+    name: 'Nour Abdelrahman',
+    role: 'Drilling Supervisor',
+  },
+];
+
+const actionCards = [
+  {
+    image: 'assets/backgrounds/new/action-hseq-audit.png',
+    alt: 'Safety auditor inspecting valves and pressure gauges',
+    eyebrow: 'HSEQ',
+    body: 'Health and safety forms the cornerstone of how we work and ensures nobody gets hurt on our worksites.',
+    cta: 'Learn more',
+    href: href('en/hseq'),
+  },
+  {
+    image: 'assets/backgrounds/new/action-field-engineers.png',
+    alt: 'Two field engineers reviewing a technical blueprint',
+    eyebrow: 'CAREERS AT BRO',
+    body: 'Join a team where field experience is valued, training is structured and careers are built to last.',
+    cta: 'Find out more',
+    href: href('en/careers'),
+  },
+];
+
+const heroImage = asset('assets/backgrounds/Sunset Oilfield Rig and Workers.png');
+const blueprintImage = asset('assets/backgrounds/Industrial Blueprint with Steel Piping.png');
+const safetyImage = asset('assets/backgrounds/Refinery Safety Inspection at Dusk.png');
+const ctaImage = asset('assets/backgrounds/Sunset Pipelines Across the Desert.png');
+
+const circleButton = 'w-10 h-10 rounded-full bg-primary-container text-[#0E2B3B] flex items-center justify-center shrink-0 group-hover:rotate-45 transition-transform duration-300';
+---
+
+<HomeLayout>
+  <!-- 1. HERO -->
+  <section class="relative w-full min-h-[720px] h-auto lg:h-[85vh] lg:min-h-[640px] flex items-center overflow-hidden">
+    <img src={heroImage} alt="Sunset oilfield rig and workers" class="absolute inset-0 w-full h-full object-cover object-center" style="filter: blur(1.2px);" />
+    <div class="absolute inset-0 bg-[#0E2B3B]/65 backdrop-blur-[0.5px]"></div>
+    <div class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#EFAB3E_1px,transparent_1px)] [background-size:24px_24px]"></div>
+
+    <div class="relative z-10 w-full max-w-[1200px] mx-auto px-6 pt-10 pb-80 sm:pb-64 lg:pt-0 lg:pb-28">
+      <div class="max-w-3xl flex flex-col items-start">
+        <div class="inline-flex items-center gap-2 mb-4">
+          <span class="w-2 h-2 rounded-[2px] bg-primary-container"></span>
+          <span class="font-eyebrow text-eyebrow uppercase tracking-widest text-primary-container font-bold">DRILLING AND FIELD SERVICES · MENA</span>
+        </div>
+        <h1 class="font-headline-xl text-4xl sm:text-5xl lg:text-6xl text-pure-white leading-[1.1] mb-6 font-semibold">Field support for operations that cannot afford delay.</h1>
+        <p class="font-lead text-lead text-pure-white/90 max-w-2xl leading-relaxed mb-8">Land drilling, well services, equipment, inspection and logistics, delivered by a disciplined crew with a clear plan from brief to handover.</p>
+      </div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 w-full z-20 backdrop-blur-md bg-gradient-to-t from-[#0E2B3B]/80 via-[#0E2B3B]/40 to-transparent border-t border-pure-white/15 py-5 lg:py-6 transition-all">
+      <div class="max-w-[1200px] mx-auto px-6">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0">
+          {stats.map((stat) => (
+            <div class="flex flex-col justify-between border-l-0 lg:border-l first:border-l-0 border-pure-white/15 lg:px-6">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-[11px] font-mono tracking-widest text-primary-container font-semibold uppercase">{stat.eyebrow}</span>
+                </div>
+                <div class="flex items-baseline gap-1.5">
+                  <span class="font-headline-xl text-3xl lg:text-4xl font-semibold text-pure-white tracking-tight leading-none tabular-nums">{stat.value}</span>
+                  <span class={stat.unitClass}>{stat.unit}</span>
+                </div>
+              </div>
+              <div class="mt-2 pt-2 border-t border-pure-white/10">
+                <div class="font-body-medium text-[14px] font-bold text-pure-white leading-snug tracking-tight">{stat.label}</div>
+                <div class="text-[12px] text-pure-white/70 font-normal tracking-normal mt-0.5 leading-tight">{stat.detail}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. CERTIFICATIONS -->
+  <section class="w-full bg-pure-white py-12 lg:py-16 relative border-b border-border-hairline">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="max-w-2xl mx-auto text-center mb-8">
+        <div class="inline-flex items-center gap-2 mb-2">
+          <span class="w-2 h-2 rounded-[2px] bg-primary-container"></span>
+          <span class="font-eyebrow text-eyebrow uppercase tracking-widest text-primary font-bold">CERTIFIED STANDARDS &amp; GOVERNANCE</span>
+        </div>
+        <h2 class="font-headline-lg text-2xl sm:text-3xl font-semibold text-[#163D52] tracking-tight leading-tight mb-2">Industry-accredited operational compliance.</h2>
+        <p class="font-body text-sm text-muted-text leading-relaxed max-w-xl mx-auto">Every drilling campaign, workover operation, and equipment rental is audited against stringent international petroleum industry frameworks and rigorous management systems.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {certifications.map((cert) => (
+          <div class="group bg-pale-tint border border-border-hairline p-4 rounded-[2px] flex flex-col justify-between hover:border-primary-container hover:shadow-md transition-all duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-primary text-[18px]">{cert.icon}</span>
+                </div>
+                <span class:list={['font-mono text-[11px] uppercase tracking-wider', cert.highlight ? 'text-primary font-bold' : 'font-semibold text-muted-text']}>{cert.label}</span>
+              </div>
+              <h3 class="font-headline-md text-[16px] font-semibold text-[#163D52] mb-0.5 leading-snug">{cert.code}</h3>
+              <div class="font-body-medium text-[12px] font-semibold text-primary mb-2">{cert.name}</div>
+              <p class="font-body text-[13px] text-muted-text leading-snug mb-3">{cert.body}</p>
+            </div>
+            <div class="pt-2.5 border-t border-border-hairline flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+              <span class="font-mono text-[11px] font-semibold tracking-wider text-[#163D52] uppercase">{cert.footer}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SERVICES -->
+  <section class="relative w-full bg-pale-tint py-24 lg:py-28 overflow-hidden" id="services">
+    <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+      <img src={blueprintImage} alt="Industrial blueprint with steel piping" class="w-full h-full object-cover object-center" />
+      <div class="absolute inset-0 bg-[#0E2B3B]/90 backdrop-blur-[0.5px]"></div>
+    </div>
+    <div class="relative z-10 max-w-[1200px] mx-auto px-6">
+      <div class="max-w-2xl mb-14">
+        <div class="font-eyebrow text-eyebrow uppercase tracking-widest text-primary-container font-bold mb-3">SERVICES</div>
+        <h2 class="font-headline-lg text-headline-lg text-pure-white mb-4">From operating requirement to a clear delivery plan.</h2>
+        <p class="font-lead text-lead text-pure-white/85">Six service lines, each scoped around your brief, your equipment and your schedule.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.map((service) => (
+          <div class="group bg-pure-white border border-border-hairline p-8 rounded-[2px] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="font-mono text-sm tracking-wider text-muted-text font-semibold">{service.number}</span>
+                <div class="w-10 h-10 text-[#163D52]">
+                  <svg class="w-full h-full" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 32 32"><Fragment set:html={service.icon} /></svg>
+                </div>
+              </div>
+              <h3 class="font-headline-md text-[22px] font-semibold text-[#163D52] mb-3">{service.title}</h3>
+              <p class="font-body text-[15px] text-muted-text leading-relaxed mb-8">{service.body}</p>
+            </div>
+            <a class="flex items-center gap-3 pt-4 border-t border-border-hairline" href={href(`en/services/${service.slug}`)}>
+              <span class={circleButton}><span class="material-symbols-outlined text-[18px]">add</span></span>
+              <span class="text-[14px] font-semibold text-[#163D52] group-hover:text-[#8A5A00] transition-colors">Learn more</span>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. SAFETY -->
+  <section class="relative w-full py-24 lg:py-28 overflow-hidden">
+    <img src={safetyImage} alt="Safety inspection at an industrial facility at dusk" class="absolute inset-0 w-full h-full object-cover object-center" style="filter: blur(1.2px);" />
+    <div class="absolute inset-0 bg-[#0E2B3B]/90"></div>
+    <div class="relative z-10 max-w-[1200px] mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div class="lg:col-span-6">
+          <div class="font-eyebrow text-eyebrow uppercase tracking-widest text-primary-container font-bold mb-3">HEALTH · SAFETY · ENVIRONMENT · QUALITY</div>
+          <h2 class="font-headline-lg text-headline-lg text-pure-white leading-tight mb-6">Safety is our <span class="text-primary-container">first deliverable.</span></h2>
+          <p class="font-body text-body text-pure-white/85 leading-relaxed mb-8 max-w-lg">Health, safety and environmental responsibility sits at the centre of every plan we write and every job we run. Nobody should get hurt doing their work.</p>
+          <a class="inline-flex items-center gap-4 group" href={href('en/hseq')}>
+            <span class="w-12 h-12 rounded-full bg-primary-container text-[#0E2B3B] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:rotate-45">
+              <span class="material-symbols-outlined text-[20px]">add</span>
+            </span>
+            <span class="font-body-medium text-pure-white font-bold group-hover:text-primary-container transition-colors">Learn more</span>
+          </a>
+        </div>
+
+        <div class="lg:col-span-6 flex items-center justify-center">
+          <div class="relative w-full max-w-[460px] aspect-square flex items-center justify-center p-6">
+            <svg class="w-full h-full" fill="none" viewBox="0 0 400 400">
+              <circle cx="200" cy="200" r="185" stroke="#FFFFFF" stroke-dasharray="2 4" stroke-opacity="0.1"></circle>
+              <circle cx="200" cy="200" r="140" stroke="#FFFFFF" stroke-opacity="0.15"></circle>
+              <polygon points="200,25 351,112 351,288 200,375 49,288 49,112" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="1.5"></polygon>
+              <polygon points="200,60 321,130 321,270 200,340 79,270 79,130" stroke="#EFAB3E" stroke-opacity="0.8" stroke-width="1.5"></polygon>
+              <line stroke="#EFAB3E" stroke-dasharray="4 4" stroke-opacity="0.3" stroke-width="1" x1="200" x2="200" y1="20" y2="380"></line>
+              <line stroke="#EFAB3E" stroke-dasharray="4 4" stroke-opacity="0.3" stroke-width="1" x1="20" x2="380" y1="200" y2="200"></line>
+              <polygon fill="#EFAB3E" points="200,165 208,192 235,200 208,208 200,235 192,208 165,200 192,192"></polygon>
+              <path d="M192,228 L200,182 L208,228 Z" fill="#FFFFFF" fill-opacity="0.85"></path>
+              <line stroke="#0E2B3B" stroke-width="1.5" x1="194" x2="206" y1="210" y2="210"></line>
+              <line stroke="#EFAB3E" stroke-width="2" x1="190" x2="210" y1="228" y2="228"></line>
+            </svg>
+            <div class="absolute top-0 -translate-y-2 bg-[#0E2B3B] px-4 py-1.5 rounded-[2px] border border-[#EFAB3E]">
+              <span class="font-eyebrow text-[12px] font-bold uppercase tracking-wider text-primary-container">Safety</span>
+            </div>
+            <div class="absolute top-1/4 right-0 translate-x-3 bg-[#0E2B3B]/90 px-3 py-1 rounded-[2px] border border-pure-white/30">
+              <span class="font-eyebrow text-[11px] font-medium uppercase tracking-wider text-pure-white/90">Integrity</span>
+            </div>
+            <div class="absolute bottom-1/4 right-0 translate-x-3 bg-[#0E2B3B]/90 px-3 py-1 rounded-[2px] border border-pure-white/30">
+              <span class="font-eyebrow text-[11px] font-medium uppercase tracking-wider text-pure-white/90">Reliability</span>
+            </div>
+            <div class="absolute bottom-0 translate-y-2 bg-[#0E2B3B]/90 px-3 py-1 rounded-[2px] border border-pure-white/30">
+              <span class="font-eyebrow text-[11px] font-medium uppercase tracking-wider text-pure-white/90">Partnership</span>
+            </div>
+            <div class="absolute bottom-1/4 left-0 -translate-x-3 bg-[#0E2B3B]/90 px-3 py-1 rounded-[2px] border border-pure-white/30">
+              <span class="font-eyebrow text-[11px] font-medium uppercase tracking-wider text-pure-white/90">Ownership</span>
+            </div>
+            <div class="absolute top-1/4 left-0 -translate-x-3 bg-[#0E2B3B]/90 px-3 py-1 rounded-[2px] border border-pure-white/30">
+              <span class="font-eyebrow text-[11px] font-medium uppercase tracking-wider text-pure-white/90">People</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. WHERE WE OPERATE -->
+  <section class="w-full bg-pure-white py-24 lg:py-28">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div class="lg:col-span-5">
+          <div class="font-eyebrow text-eyebrow uppercase tracking-widest text-[#8A5A00] font-bold mb-3">OPERATIONS</div>
+          <h2 class="font-headline-lg text-headline-lg text-[#163D52] mb-4">Close to the fields we serve.</h2>
+          <p class="font-body text-body text-[#1B2B35] leading-relaxed mb-8">Our operating bases cover Egypt's main producing regions, so crews, equipment and support are never far from the work.</p>
+          <div class="inline-flex items-center gap-3 px-4 py-2.5 bg-pale-tint rounded-[2px] border border-border-hairline mb-8">
+            <span class="relative flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-primary-container"></span>
+            </span>
+            <span class="font-body-medium text-[15px] font-semibold text-[#163D52]">5 operating regions active today</span>
+          </div>
+          <div class="space-y-3">
+            {regions.map((region, index) => (
+              <div class="flex items-center justify-between py-2 border-b border-border-hairline text-[14px]">
+                <span class="font-semibold text-[#163D52]">{index + 1}. {region.name}</span>
+                <span class="text-muted-text text-right">{region.scope}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="relative bg-pale-tint border border-border-hairline rounded-[2px] p-6 lg:p-10">
+            <svg class="w-full h-auto text-[#163D52]" fill="none" viewBox="0 0 600 520" xmlns="http://www.w3.org/2000/svg">
+              <line stroke="#D5DCE0" stroke-dasharray="3 3" stroke-width="1" x1="40" x2="560" y1="80" y2="80"></line>
+              <line stroke="#D5DCE0" stroke-dasharray="3 3" stroke-width="1" x1="40" x2="560" y1="200" y2="200"></line>
+              <line stroke="#D5DCE0" stroke-dasharray="3 3" stroke-width="1" x1="40" x2="560" y1="360" y2="360"></line>
+              <line stroke="#D5DCE0" stroke-dasharray="3 3" stroke-width="1" x1="160" x2="160" y1="40" y2="480"></line>
+              <line stroke="#D5DCE0" stroke-dasharray="3 3" stroke-width="1" x1="340" x2="340" y1="40" y2="480"></line>
+              <line stroke="#D5DCE0" stroke-dasharray="3 3" stroke-width="1" x1="480" x2="480" y1="40" y2="480"></line>
+              <path d="M560,464.9 L390.5,464.9 L224.6,464.9 L52.8,464.9 L52.8,307.5 L52.8,155.5 L40,121 L51,94.6 L44.4,76.4 L59.9,55.9 L116.7,55.1 L157.9,66.4 L200.3,79.1 L220.1,85.7 L253,72.2 L270.6,59.9 L308.3,56.4 L338.7,61.8 L350.3,83 L360.2,69.1 L394.5,79.2 L427.8,81.6 L448.8,70.8 L472.7,133.1 L476.9,144.2 L464.9,161.4 L455.7,193.7 L444.1,216 L434.1,223.4 L419.9,209.6 L400.6,190.6 L370.1,129.3 L365.7,133.2 L383.4,178.3 L409.7,221.2 L442,287.8 L457.7,311 L471.5,335.2 L509.8,382.5 L501.3,390 L502.7,417.7 L552.5,456.1 L560,464.9 Z" fill="#FFFFFF" stroke="#163D52" stroke-opacity="0.45" stroke-width="1.8" stroke-linejoin="round"></path>
+              <g transform="translate(181, 230)">
+                <circle cx="0" cy="0" fill="#EFAB3E" fill-opacity="0.2" r="14"></circle>
+                <circle cx="0" cy="0" fill="#EFAB3E" r="5"></circle>
+                <circle cx="0" cy="0" fill="#0E2B3B" r="2"></circle>
+                <text fill="#163D52" font-family="IBM Plex Sans" font-size="12" font-weight="600" x="12" y="4">Western Desert</text>
+              </g>
+              <g transform="translate(393, 168)">
+                <circle cx="0" cy="0" fill="#EFAB3E" fill-opacity="0.2" r="14"></circle>
+                <circle cx="0" cy="0" fill="#EFAB3E" r="5"></circle>
+                <circle cx="0" cy="0" fill="#0E2B3B" r="2"></circle>
+                <text fill="#163D52" font-family="IBM Plex Sans" font-size="12" font-weight="600" x="12" y="4">Gulf of Suez</text>
+              </g>
+              <g transform="translate(433, 149)">
+                <circle cx="0" cy="0" fill="#EFAB3E" fill-opacity="0.2" r="14"></circle>
+                <circle cx="0" cy="0" fill="#EFAB3E" r="5"></circle>
+                <circle cx="0" cy="0" fill="#0E2B3B" r="2"></circle>
+                <text fill="#163D52" font-family="IBM Plex Sans" font-size="12" font-weight="600" x="12" y="4">Sinai</text>
+              </g>
+              <g transform="translate(309, 93)">
+                <circle cx="0" cy="0" fill="#EFAB3E" fill-opacity="0.2" r="14"></circle>
+                <circle cx="0" cy="0" fill="#EFAB3E" r="5"></circle>
+                <circle cx="0" cy="0" fill="#0E2B3B" r="2"></circle>
+                <text fill="#163D52" font-family="IBM Plex Sans" font-size="12" font-weight="600" x="-75" y="-8">Nile Delta</text>
+              </g>
+              <g transform="translate(352, 315)">
+                <circle cx="0" cy="0" fill="#EFAB3E" fill-opacity="0.2" r="14"></circle>
+                <circle cx="0" cy="0" fill="#EFAB3E" r="5"></circle>
+                <circle cx="0" cy="0" fill="#0E2B3B" r="2"></circle>
+                <text fill="#163D52" font-family="IBM Plex Sans" font-size="12" font-weight="600" x="12" y="4">Upper Egypt</text>
+              </g>
+              <text fill="#8BA1AF" font-family="IBM Plex Sans" font-size="10" letter-spacing="0.1em" x="75" y="445">DATUM: WGS84 · EGYPT OPERATIONAL SPHERE</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. PROJECTS -->
+  <section class="relative w-full bg-[#163D52] py-24 lg:py-28 overflow-hidden" id="projects">
+    <svg class="absolute inset-0 w-full h-full opacity-10 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-100,100 C200,80 400,260 800,220 C1200,180 1400,320 1800,280" fill="none" stroke="#FFFFFF" stroke-width="1.5"></path>
+      <path d="M-100,240 C250,220 500,400 900,360 C1300,320 1500,480 1900,440" fill="none" stroke="#FFFFFF" stroke-width="1.5"></path>
+      <path d="M-100,380 C300,340 600,520 1000,480 C1400,440 1600,600 2000,560" fill="none" stroke="#FFFFFF" stroke-width="1.5"></path>
+    </svg>
+    <div class="relative z-10 max-w-[1200px] mx-auto px-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14">
+        <div>
+          <div class="font-eyebrow text-eyebrow uppercase tracking-widest text-primary-container font-bold mb-3">TRACK RECORD</div>
+          <h2 class="font-headline-lg text-headline-lg text-pure-white">Results that can be reviewed.</h2>
+        </div>
+        <a class="inline-flex items-center gap-2 text-primary-container font-body-medium font-semibold hover:underline" href={href('en/projects')}>
+          <span>View all projects</span>
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project) => (
+          <div class="group bg-pure-white border border-border-hairline rounded-[2px] overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <div>
+              <div class="relative aspect-video w-full overflow-hidden">
+                <img src={asset(project.image)} alt={project.alt} class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              </div>
+              <div class="p-6">
+                <div class="font-eyebrow text-[12px] uppercase tracking-wider text-muted-text font-semibold mb-2">{project.client}</div>
+                <h3 class="font-headline-md text-[20px] font-semibold text-[#163D52] mb-6 leading-snug">{project.title}</h3>
+                <div class="border-t border-border-hairline pt-4 mb-2">
+                  <div class="font-headline-lg text-[44px] font-bold text-[#163D52] leading-none mb-1">{project.figure}</div>
+                  <p class="font-caption text-caption text-muted-text">{project.caption}</p>
+                </div>
+              </div>
+            </div>
+            <a class="px-6 pb-6 pt-2 flex items-center justify-between" href={href('en/projects')}>
+              <span class="text-[14px] font-semibold text-[#163D52] group-hover:text-[#8A5A00] transition-colors">View project</span>
+              <span class={circleButton}><span class="material-symbols-outlined text-[18px]">add</span></span>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. OUR PEOPLE -->
+  <section class="w-full bg-pure-white py-24 lg:py-28" id="people">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="font-eyebrow text-eyebrow uppercase tracking-widest text-[#8A5A00] font-bold mb-3">OUR PEOPLE</div>
+      <h2 class="font-headline-lg text-headline-lg text-[#163D52] mb-12">Powered by people who know the ground.</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {quotes.map((item) => (
+          <div class="bg-pale-tint border border-border-hairline rounded-[2px] overflow-hidden flex flex-col justify-between">
+            <div class="w-full aspect-[3/2] overflow-hidden relative">
+              <img src={asset(item.image)} alt={item.alt} class="w-full h-full object-cover object-center" loading="lazy" />
+            </div>
+            <div class="p-8 flex flex-col justify-between flex-1">
+              <blockquote class="font-headline-md text-[20px] text-[#163D52] leading-snug mb-6 italic">{item.quote}</blockquote>
+              <div class="pt-4 border-t border-border-hairline">
+                <div class="font-body-medium text-[16px] font-semibold text-[#163D52]">{item.name}</div>
+                <div class="font-body text-[14px] text-muted-text">{item.role}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. TWO ACTION CARDS -->
+  <section class="w-full bg-pure-white py-12 lg:py-16">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {actionCards.map((card) => (
+          <div class="group bg-pale-tint border border-border-hairline rounded-[2px] flex flex-col sm:flex-row overflow-hidden hover:shadow-md transition-shadow">
+            <div class="sm:w-2/5 min-h-[220px] relative">
+              <img src={asset(card.image)} alt={card.alt} class="w-full h-full object-cover object-center" loading="lazy" />
+            </div>
+            <div class="hidden sm:block w-px bg-border-hairline"></div>
+            <div class="sm:w-3/5 p-6 sm:p-8 flex flex-col justify-between">
+              <div>
+                <div class="font-eyebrow text-eyebrow uppercase tracking-widest text-[#8A5A00] font-bold mb-2">{card.eyebrow}</div>
+                <p class="font-body text-[15px] text-[#1B2B35] leading-relaxed mb-6">{card.body}</p>
+              </div>
+              <a class="inline-flex items-center gap-3" href={card.href}>
+                <span class={circleButton}><span class="material-symbols-outlined text-[18px]">add</span></span>
+                <span class="text-[14px] font-semibold text-[#163D52] group-hover:text-[#8A5A00] transition-colors">{card.cta}</span>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. FINAL CTA -->
+  <section class="relative w-full py-24 lg:py-28 overflow-hidden" id="contact">
+    <img src={ctaImage} alt="Desert pipeline manifold at dusk" class="absolute inset-0 w-full h-full object-cover object-center" style="filter: blur(1.2px);" />
+    <div class="absolute inset-0 bg-[#0E2B3B]/[0.92]"></div>
+    <div class="relative z-10 max-w-[1200px] mx-auto px-6">
+      <div class="max-w-2xl">
+        <div class="font-eyebrow text-eyebrow uppercase tracking-widest text-primary-container font-bold mb-3">START A CONVERSATION</div>
+        <h2 class="font-headline-lg text-headline-lg text-pure-white mb-4">Send us the operating requirement.</h2>
+        <p class="font-lead text-lead text-pure-white/80 leading-relaxed mb-8">Share the scope, location and timeline. We will come back within one working day with the right questions and a clear next step.</p>
+        <div class="flex flex-wrap items-center gap-4 mb-8">
+          <a class="inline-flex items-center justify-center bg-primary-container text-[#0E2B3B] hover:bg-[#8A5A00] hover:text-pure-white font-semibold text-[15px] px-8 py-3.5 rounded-[2px] transition-colors" href={href('en/contact')}>Request a quote</a>
+          <a class="inline-flex items-center gap-2 border border-pure-white text-pure-white hover:bg-pure-white/10 font-medium text-[15px] px-7 py-3.5 rounded-[2px] transition-colors" href="https://wa.me/20225000140" rel="noopener noreferrer" target="_blank">
+            <span class="material-symbols-outlined text-[18px]">chat</span>
+            <span>Message on WhatsApp</span>
+          </a>
+        </div>
+        <div class="pt-6 border-t border-[#163D52]">
+          <div class="font-body text-[15px] text-pure-white/70 tracking-wide">
+            <a class="hover:text-primary-container transition-colors" href="tel:+20225000140">+20 2 2500 0140</a>
+            <span class="mx-2">·</span>
+            <a class="hover:text-primary-container transition-colors" href="mailto:rfq@bropetroleum.com">rfq@bropetroleum.com</a>
+            <span class="mx-2">·</span>
+            <span>Cairo, Egypt</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</HomeLayout>
